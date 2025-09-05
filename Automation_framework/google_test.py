@@ -7,7 +7,7 @@ def read_csv_data(file_path):
         return [row['keyword'] for row in reader]
     
 #call funtion   
-test_data = read_csv_data('./data/data_test.csv')
+test_data = read_csv_data('data/test_data.csv')
 
 #to searh keyword in google 
 @pytest.mark.parametrize("keyword", test_data)
@@ -17,5 +17,5 @@ def test_google_test(keyword):
     search_box = driver.find_element("name", "q")
     search_box.send_keys(keyword)
     search_box.submit()
-    
+
     driver.quit()
