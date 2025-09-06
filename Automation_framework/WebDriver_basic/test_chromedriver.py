@@ -41,7 +41,7 @@ print(f"Page URL is: {driver.current_url}")
 #assert checkpoint
 heading = driver.find_element(By.ID, "firstHeading")
 assert heading.is_displayed()
-print(f"Heading is: {heading} check passed" )
+print(f"Heading check passed" )
 
 #go back and forward
 driver.back()
