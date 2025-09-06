@@ -20,6 +20,11 @@ print(f"Page URL is: {driver.current_url}")
 #Print title
 print(f"Page title is: {driver.title}")
 
+#switch to alert
+alert = driver.switch_to.alert
+alert.dismiss()
+print("Alert dismissed")
+
 #Find the search box using its name attribute value
 search_box = driver.find_element(By.NAME, "q")
 
