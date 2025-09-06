@@ -9,7 +9,7 @@ import time
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
 #Open URL
-driver.get("https://www.google.com")
+driver.get("https://www.wikipedia.org/")
 
 #Wait for the page to load
 time.sleep(2)
@@ -20,13 +20,13 @@ print(f"Page URL is: {driver.current_url}")
 #Print title
 print(f"Page title is: {driver.title}")
 
-#switch to alert
+'''#switch to alert
 alert = driver.switch_to.alert
 alert.dismiss()
-print("Alert dismissed")
+print("Alert dismissed")'''
 
 #Find the search box using its name attribute value
-search_box = driver.find_element(By.NAME, "q")
+search_box = driver.find_element(By.ID, "searchInput")
 
 #Type in search box
 search_box.send_keys("shopee")
@@ -38,14 +38,20 @@ time.sleep(2)
 #Print URL
 print(f"Page URL is: {driver.current_url}")
 
+#assert checkpoint
+heading = driver.find_element(By.ID, "firstHeading")
+assert heading.is_displayed()
+print(f"Heading is: {heading} check passed" )
+
 #go back and forward
 driver.back()
 time.sleep(2)
-print(f"Page Url is: {driver.current_url}")
+print(f"Page Url is: {driver.current_url} previous page passed")
+
 
 driver.forward()
 time.sleep(2)
-print(f"Page Url is: {driver.current_url}")
+print(f"Page Url is: {driver.current_url} next page passed")
 
 #Close the browser
 driver.quit()
