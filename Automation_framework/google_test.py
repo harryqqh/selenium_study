@@ -7,7 +7,7 @@ def read_csv_data(file_path):
         return [row['keyword'] for row in reader]
     
 #call funtion   
-test_data = read_csv_data('data/test_data.csv')
+test_data = read_csv_data('C:\Users\Harry\Documents\Selenium_Study\Automation_framework\data\test_data.csv')
 
 #to searh keyword in google 
 @pytest.mark.parametrize("keyword", test_data)
