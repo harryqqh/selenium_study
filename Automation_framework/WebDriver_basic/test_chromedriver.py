@@ -31,7 +31,7 @@ search_box.submit()
 time.sleep(2)
 
 #Print URL
-print(f"Page title is: {driver.current_url}")
+print(f"Page URL is: {driver.current_url}")
 
 #go back and forward
 driver.back()
@@ -44,3 +44,6 @@ print(f"Page Url is: {driver.current_url}")
 
 #Close the browser
 driver.quit()
+
+#End of code
+print("Test completed.")
