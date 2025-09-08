@@ -1,60 +1,52 @@
+import sys
+import os
+# Add the parent directory to the path to import utils
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver import Chrome
-import time
+from utils.data_utils import DataUtils
+from utils.wikipedia_actions import WikipediaActions
 
-#Set up Chrome driver
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+# Main test execution
+def main():
+    # Set up Chrome driver
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    
+    try:
+        # Read test data from CSV using DataUtils
+        keywords = DataUtils.read_test_data_from_csv('test_data.csv')
+        print(f"Loaded {len(keywords)} test keywords from CSV: {keywords}")
+        
+        # Initialize Wikipedia actions
+        wiki_actions = WikipediaActions(driver)
+        
+        # Run complete tests for each keyword
+        test_results = []
+        for keyword in keywords:
+            result = wiki_actions.perform_search(keyword)
+            test_results.append(result)
+        
+        # Print summary
+        print(f"\n🎉 === All tests completed! ===")
+        print(f"📊 Tested {len(keywords)} keywords: {', '.join(keywords)}")
+        
+        # Print detailed results
+        successful_tests = [r for r in test_results if r['search_successful']]
+        print(f"✅ Successful searches: {len(successful_tests)}/{len(test_results)}")
+        
+        for result in test_results:
+            status = "✅" if result['search_successful'] else "❌"
+            print(f"  {status} {result['keyword']}")
+        
+    except Exception as e:
+        print(f"❌ Test failed with error: {e}")
+    finally:
+        # Close the browser
+        driver.quit()
+        print("🔒 Browser closed.")
 
-#Open URL
-driver.get("https://www.wikipedia.org/")
-
-#Wait for the page to load
-time.sleep(2)
-
-#Print URL
-print(f"Page URL is: {driver.current_url}")
-
-#Print title
-print(f"Page title is: {driver.title}")
-
-'''#switch to alert
-alert = driver.switch_to.alert
-alert.dismiss()
-print("Alert dismissed")'''
-
-#Find the search box using its name attribute value
-search_box = driver.find_element(By.ID, "searchInput")
-
-#Type in search box
-search_box.send_keys("shopee")
-search_box.submit()
-
-#Wait for loading
-time.sleep(2)
-
-#Print URL
-print(f"Page URL is: {driver.current_url}")
-
-#assert checkpoint
-heading = driver.find_element(By.ID, "firstHeading")
-assert heading.is_displayed()
-print(f"Heading check passed" )
-
-#go back and forward
-driver.back()
-time.sleep(2)
-print(f"Page Url is: {driver.current_url} previous page passed")
-
-
-driver.forward()
-time.sleep(2)
-print(f"Page Url is: {driver.current_url} next page passed")
-
-#Close the browser
-driver.quit()
-
-#End of code
-print("Test completed.")
+# Run the main function
+if __name__ == "__main__":
+    main()
