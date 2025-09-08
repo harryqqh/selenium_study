@@ -8,7 +8,7 @@ def read_csv_data(file_path):
         return [row['keyword'] for row in reader]
     
 #call function   
-test_data = read_csv_data('./data/test_data.csv')
+test_data = read_csv_data('test_data.csv')
 
 # to search keyword in Google
 
