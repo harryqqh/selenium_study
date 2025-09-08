@@ -7,8 +7,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
-import time
-
 
 class WikipediaActions:
     """Class containing various Wikipedia actions and operations."""
@@ -160,9 +158,8 @@ class WikipediaActions:
         try:
             current_url = self.driver.current_url
             page_title = self.driver.title
-            
             # Check for common indicators
-            is_disambiguation = "disambiguation" in page_title.lower()
+            is_disambiguation = bool(self.driver.find_elements(By.ID, "disambigbox"))
             is_search_results = "search results" in page_title.lower()
             is_error_page = "does not exist" in self.driver.page_source.lower()
             
