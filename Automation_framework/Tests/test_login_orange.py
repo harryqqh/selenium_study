@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
 import pytest
 
 def test_login_ora():
@@ -10,11 +11,11 @@ def test_login_ora():
         driver = webdriver.Chrome()
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
         driver.maximize_window()
-        wait = WebDriverWait(driver, 10)
+        '''wait = WebDriverWait(driver, 10)'''
 
         #wait for the login page to load
-        wait.until(EC.presence_of_element_located((By.XPATH, "//img[@alt='company-branding']")))
-   
+        '''wait.until(EC.presence_of_element_located((By.XPATH, "//img[@alt='company-branding']")))'''
+        time.sleep(3)
     
         #input username and password
         username = driver.find_element(By.XPATH, "//*[@name='username']")
@@ -27,7 +28,8 @@ def test_login_ora():
         login_button.click()
     
         #Wait for loading
-        wait.until(EC.presence_of_element_located((By.XPATH, "//p[@class='oxd-userdropdown-name']")))
+        '''wait.until(EC.presence_of_element_located((By.XPATH, "//p[@class='oxd-userdropdown-name']")))'''
+        time.sleep(3)
     
         #Verify login successful by checking for profile element
         profile = driver.find_element(By.XPATH, "//p[@class='oxd-userdropdown-name']")
