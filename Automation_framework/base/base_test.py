@@ -13,4 +13,4 @@ class BaseTest:
         request.cls.driver = driver
         sleep(3)
         yield
-        driver.quit()    
+        driver.quit()

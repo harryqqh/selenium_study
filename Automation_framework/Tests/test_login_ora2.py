@@ -5,11 +5,16 @@ import time
 import pytest
 
 class TestLogin(BaseTest):
+    
     def test_login_ora(self):
+        USERNAME_INPUT = (By.XPATH, "//*[@name='username']")
+        PASSWORD_INPUT = (By.XPATH, "//*[@name='password']")
+        LOGINBTN = (By.XPATH, "//button[@type='submit']")
+        
         #Access driver from Basetest class
-        username = self.driver.find_element(By.XPATH, "//*[@name='username']")
-        password = self.driver.find_element(By.XPATH, "//*[@name='password']")
-        login_button = self.driver.find_element(By.XPATH, "//button[@type='submit']")
+        username = self.driver.find_element(*USERNAME_INPUT)
+        password = self.driver.find_element(*PASSWORD_INPUT)
+        login_button = self.driver.find_element(*LOGINBTN)
         
         #Perform action
         username.send_keys('Admin')
