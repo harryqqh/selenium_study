@@ -11,10 +11,9 @@ def test_login_ora():
         driver = webdriver.Chrome()
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
         driver.maximize_window()
-        '''wait = WebDriverWait(driver, 10)'''
+        wait = WebDriverWait(driver, 10)
 
         #wait for the login page to load
-        '''wait.until(EC.presence_of_element_located((By.XPATH, "//img[@alt='company-branding']")))'''
         time.sleep(3)
     
         #input username and password
@@ -28,8 +27,7 @@ def test_login_ora():
         login_button.click()
     
         #Wait for loading
-        '''wait.until(EC.presence_of_element_located((By.XPATH, "//p[@class='oxd-userdropdown-name']")))'''
-        time.sleep(3)
+        time.sleep(5)
     
         #Verify login successful by checking for profile element
         profile = driver.find_element(By.XPATH, "//p[@class='oxd-userdropdown-name']")

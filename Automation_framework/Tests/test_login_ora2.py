@@ -1,41 +1,26 @@
-import sys
-import os
-# Add the parent directory to the path to import utils
-sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
-
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from pages.login_page import LoginPage
+from base.base_test import BaseTest
+import time
 import pytest
 
-def test_login_ora():
-    # Initialize WebDriver
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-    driver.maximize_window()
-    
-    try:
-        # Create an instance of the LoginPage
-        login_page = LoginPage(driver)
+class TestLogin(BaseTest):
+    def test_login_ora(self):
+        #Access driver from Basetest class
+        username = self.driver.find_element(By.XPATH, "//*[@name='username']")
+        password = self.driver.find_element(By.XPATH, "//*[@name='password']")
+        login_button = self.driver.find_element(By.XPATH, "//button[@type='submit']")
         
-        # Navigate to the login page
-        login_page.navigate_to_homepage()
+        #Perform action
+        username.send_keys('Admin')
+        password.send_keys('admin123')
+        login_button.click()
         
-        # Perform login actions
-        login_page.login("Admin", "admin123")
-        login_page.verify_login_successful()
+        #Wait for loading
+        time.sleep(5) 
         
-        #Print summary
-        print(f"Login successful, test completed")
-    except AssertionError:
-        print("❌ Login failed: {profile} not found in URL.")
-    except Exception as e:
-        print(f"Test failed with error: {e}")
-
-    #finally:
-        #driver.quit()
-        #print("🔒 Browser closed.")   
-    
+        #Verify login successful by checking for profile element
+        profile = self.driver.find_element(By.XPATH, "//p[@class='oxd-userdropdown-name']")
+        assert profile.is_displayed()
+        print("✅ Login successful, test completed")  
+        
