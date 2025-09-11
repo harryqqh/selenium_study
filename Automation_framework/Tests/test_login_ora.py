@@ -2,23 +2,25 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from base.base_test import BaseTest
 from pages.login_page import LoginPage
+from pages.dashboard_page import DasboardPage
 from time import sleep
 import pytest
 
-class TestLogin(LoginPage):
+class TestLogin(BaseTest):
     
     def test_login_ora(self):
-        print("🔑 Starting login test")
+        loginpage = LoginPage(self.driver)
         #Perform actions
-        self.login("Admin", "admin123")
+        loginpage.login("Admin", "admin123")
         print("✅ Login attempted")
         
         #Loading wait
-        sleep(3)
+        sleep(5)
         
-        #Verify login successful by checking for profile element
-        profile = self.driver.find_element(By.XPATH, "//p[@class='oxd-userdropdown-name']")
-        assert profile.is_displayed()
+        #Verify login successful
+        dashboardpage = DasboardPage(self.driver)
+        assert dashboardpage.verify_login_successful() == True
         print("✅ Login successful, test completed")
     

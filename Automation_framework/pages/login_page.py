@@ -12,41 +12,23 @@ import pytest
 from time import sleep
 
 class LoginPage:
-    @pytest.fixture(scope="class", autouse=True)
+    USERNAME_INPUT = (By.XPATH, "//*[@name='username']")
+    PASSWORD_INPUT = (By.XPATH, "//*[@name='password']")
+    LOGINBTN = (By.XPATH, "//button[@type='submit']")
     
-    #Initialize webdriver
-    def setup(self, request):
-        driver = webdriver.Chrome()
-        driver.get("https://opensource-demo.orangehrmlive.com/")
-        driver.maximize_window()
-        self.wait = WebDriverWait(driver, 10)
-        request.cls.driver = driver
-        sleep(3)
-        yield
-        driver.quit()
-             
-    '''def navigate_to_homepage(self):
-        """Load the login page."""
-        print(f"Navigating to homepage: {self.base_url}")
-        self.driver.get(self.base_url)'''
-        
-        
-    def login(self, username, password):
+    def __init__(self, driver):
+        self.driver = driver
+           
+    def login(self, user_name, password):
         """Perform the complete login action."""
-        USERNAME_INPUT = (By.XPATH, "//*[@name='username']")
-        PASSWORD_INPUT = (By.XPATH, "//*[@name='password']")
-        LOGINBTN = (By.XPATH, "//button[@type='submit']")
-        
-        
-        username = self.driver.find_element(*USERNAME_INPUT)
-        password = self.driver.find_element(*PASSWORD_INPUT)
-        login_button = self.driver.find_element(*LOGINBTN)
-        
+        #Locate elements
+        username_field = self.driver.find_element(*self.USERNAME_INPUT)
+        password_field = self.driver.find_element(*self.PASSWORD_INPUT)
+        login_button = self.driver.find_element(*self.LOGINBTN)
+
         #Input username and password
-        username.clear()
-        username.send_keys('Admin')
-        password.clear()
-        password.send_keys('admin123')
+        username_field.send_keys(user_name)
+        password_field.send_keys(password)
         login_button.click()
     
     
@@ -76,13 +58,7 @@ class LoginPage:
         login_button = self.driver.find_element(By.XPATH, "//button[@type='submit']")
         enter(self.wait, username, username)
         enter(self.wait, password, password)
-        login_button.click()
-    
-    def verify_login_successful(self):
-        #verify login successful by checking presence of profile element
-        self.wait.until(EC.presence_of_element_located(self.profile))
-        profile = self.driver.find_element(By.XPATH, "//p[@class='oxd-userdropdown-name']")
-        assert profile.is_displayed()'''
+        login_button.click()'''
        
         
             
