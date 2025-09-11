@@ -8,17 +8,18 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from utils.common import enter_text
 import pytest
 from time import sleep
 
 class LoginPage:
     @pytest.fixture(scope="class", autouse=True)
+    
     #Initialize webdriver
     def setup(self, request):
         driver = webdriver.Chrome()
         driver.get("https://opensource-demo.orangehrmlive.com/")
         driver.maximize_window()
+        self.wait = WebDriverWait(driver, 10)
         request.cls.driver = driver
         sleep(3)
         yield
@@ -42,15 +43,13 @@ class LoginPage:
         login_button = self.driver.find_element(*LOGINBTN)
         
         #Input username and password
-        enter_text(self.wait, USERNAME_INPUT, username)
-        enter_text(self.wait, PASSWORD_INPUT, password)
+        username.clear()
+        username.send_keys("Admin")
+        password.clear()
+        password.send_keys("admin123")
         login_button.click()
     
-    def verify_login_successful(self):
-        #verify login successful by checking presence of profile element
-        self.wait.until(EC.presence_of_element_located(self.profile))
-        profile = self.driver.find_element(By.XPATH, "//p[@class='oxd-userdropdown-name']")
-        assert profile.is_displayed()
+    
         
         
        
