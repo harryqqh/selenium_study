@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
 import pytest
 
 class RecruitmentPage:
@@ -12,4 +13,5 @@ class RecruitmentPage:
         """Navigate to the Recruitment page."""
         recruitment_menu = self.driver.find_element(*self.RECRUITMENT_MENU)
         recruitment_menu.click()
+        
         print("✅ Navigated to Recruitment page")

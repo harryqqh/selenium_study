@@ -5,14 +5,15 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from base.base_test import BaseTest
-import pytest
-from time import sleep
+from base.base_page import BasePage
 
-class DasboardPage:
+class DasboardPage(BasePage):
         PROFILE = (By.XPATH, "//*[@class='oxd-userdropdown-name']")
+        
         def __init__(self, driver):
             self.driver = driver
-        
+            self.wait = WebDriverWait(driver, 10)
+            
         def verify_login_successful(self):
-            profile = self.driver.find_element(*self.PROFILE)
+            profile = self.get_element(self.PROFILE)
             return profile.is_displayed()

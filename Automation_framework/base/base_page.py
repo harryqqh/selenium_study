@@ -16,13 +16,12 @@ class BasePage:
         return self.driver.find_element(element)
     
      #Wait for button to clickable
-    def click(self, element):
-        self.wait.until(EC.presence_of_element_located(element)).click()
+    def click(self, xpath):
+        self.wait.until(EC.presence_of_element_located(xpath)).click()
         
     #Method to input text
-    def send_keys(self, element, text):
-        element = self.wait.until(EC.presence_of_element_located(element))
-        element.clear()
+    def send_keys(self, xpath, text):
+        element = self.wait.until(EC.presence_of_element_located(xpath))
         element.send_keys(text)
         
     #Verify if dropdown is selectable

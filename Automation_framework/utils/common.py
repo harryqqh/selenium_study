@@ -8,6 +8,4 @@ def __init__(self, driver):
 
 def enter(self, locator, text):
     """Enter text into a web element located by the given locator."""
-    element = self.wait.until(EC.presence_of_element_located(locator))
-    element.clear()
-    element.send_keys(text)
+    
