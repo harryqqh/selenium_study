@@ -1,5 +1,7 @@
 import pytest
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
 
@@ -11,6 +13,6 @@ class BaseTest:
         driver.get("https://opensource-demo.orangehrmlive.com/")
         driver.maximize_window()
         request.cls.driver = driver
-        sleep(3)
+        self.wait = WebDriverWait(driver,10)
         yield
         driver.quit()

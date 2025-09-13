@@ -3,6 +3,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By  
 from selenium.webdriver.common.keys import Keys
 
+def __init__(self, driver):
+    self.driver = driver
 
 def enter(self, locator, text):
     """Enter text into a web element located by the given locator."""
