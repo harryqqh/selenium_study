@@ -18,6 +18,7 @@ class LoginPage(BasePage):
         
     def __init__(self, driver):
         super().__init__(driver)
+        self.wait = WebDriverWait(driver, 10)
        
     def login(self, user_name, password):
         

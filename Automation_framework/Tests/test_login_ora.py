@@ -9,7 +9,7 @@ from pages.vacancy_page import VacancyPage
 import pytest
 
 class TestLogin(BaseTest):
-
+    try:
         def test_login_ora(self):
             print("🔵 Starting login test")
             # Initialize page objects
@@ -17,6 +17,7 @@ class TestLogin(BaseTest):
             dashboardPage = DasboardPage(self.driver)
         
             #Perform actions
+            print("🔵 Login attempted")
             loginPage.login("Admin", "admin123")
 
             #Verify login successful
@@ -25,8 +26,10 @@ class TestLogin(BaseTest):
             
             # Navigate to Recruitment page
         def test_navigate_to_recruitment(self):
-            print("🔵 Starting navigation to Recruitment page test")
+            #  Initialize page objects
             recruitmentPage = RecruitmentPage(self.driver)
+            
+            print("🔵 Starting navigation to Recruitment page test")
             recruitmentPage.navigate_to_recruitment()
             
             # Verify navigation successful by checking the presence of a unique element on the Recruitment page
@@ -51,3 +54,6 @@ class TestLogin(BaseTest):
             # Call click Add button method
             vacanciesPage.click_add_button()
             print("✅ Click Add button successful")
+            
+    except Exception as e:
+        print(f"❌ An error occurred: {e}")
