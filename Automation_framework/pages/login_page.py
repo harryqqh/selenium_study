@@ -5,6 +5,8 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from base.base_page import BasePage
 
@@ -19,10 +21,14 @@ class LoginPage(BasePage):
        
     def login(self, user_name, password):
         
-        #Input username and password
-        self.send_keys(self.USERNAME_INPUT, user_name)
-        self.send_keys(self.PASSWORD_INPUT, password)
-        self.click(self.LOGINBTN)
+        #Perform login actions
+        username_field = self.wait.until(EC.presence_of_element_located(self.USERNAME_INPUT))
+        password_field = self.wait.until(EC.presence_of_element_located(self.PASSWORD_INPUT))
+        login_button = self.wait.until(EC.element_to_be_clickable(self.LOGINBTN))
+        
+        username_field.send_keys(user_name)
+        password_field.send_keys(password)
+        login_button.click()
             
                
             

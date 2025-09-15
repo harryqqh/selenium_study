@@ -4,7 +4,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from base.base_test import BaseTest
 from base.base_page import BasePage
 
 class DasboardPage(BasePage):
@@ -15,5 +14,5 @@ class DasboardPage(BasePage):
             self.wait = WebDriverWait(driver, 10)
             
         def verify_login_successful(self):
-            profile = self.get_element(self.PROFILE)
+            profile = self.wait.until(EC.presence_of_element_located(self.PROFILE))
             return profile.is_displayed()
