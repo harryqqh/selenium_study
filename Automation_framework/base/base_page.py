@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from time import sleep
 
 class BasePage:
     
@@ -13,7 +12,7 @@ class BasePage:
     #Wait for element
     def get_element(self, xpath):
         element = self.wait.until(EC.presence_of_element_located(xpath))
-        return self.driver.find_element(element)
+        return element
     
     #Wait for button to clickable
     def click(self, xpath):
@@ -25,8 +24,6 @@ class BasePage:
         element.send_keys(text)
         
     #Verify if dropdown is selectable
-    def select_dropdown(self, element):
-        select = self.Select(self.wait.until(EC.presence_of_element_located(element)))
-        select.select_by_visible_text('Option 1')
-        sleep(2)
-        select.select_by_visible_text('Option 2')
+    # def select_dropdown(self, element, value):
+    #     select = self.Select(self.wait.until(EC.presence_of_element_located(element)))
+    #     select.select_by_visible_text(value)
