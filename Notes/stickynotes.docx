@@ -13,4 +13,4 @@ is_selected () de verify tick default truoc khi scripts tick. chi co the acction
 hidden element: "display=none" 
 screenshot
 
-viet 1 API helper su dung ham Post & Get, url: https://reqres.in/
+viet 1 method call API de su dung request Post & Get cho test scripts, url: https://reqres.in/
