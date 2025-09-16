@@ -16,14 +16,11 @@ class LoginPage(BasePage):
         
     def __init__(self, driver):
         super().__init__(driver)
-        
-       
+        # Perform login action
     def login(self, user_name, pass_word):
         self.get_element(self.USERNAME_INPUT).send_keys(user_name)
         self.get_element(self.PASSWORD_INPUT).send_keys(pass_word)
         self.click(self.LOGINBTN)
-        
-        self.get_element
 
             
                

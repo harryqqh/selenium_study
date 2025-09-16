@@ -9,7 +9,7 @@ import pytest
 
 class TestLogin(BaseTest):
  
-        def test_login_ora(self):
+        def test_login_orange(self):
             print("🔵 Starting login test")
             # Initialize page objects
             loginPage = LoginPage(self.driver)

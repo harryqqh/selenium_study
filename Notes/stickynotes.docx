@@ -3,3 +3,14 @@ http://the-internet.herokuapp.com/dropdown
 
 (//input[@class="oxd-input oxd-input--active"])[2]
 //label[contains(text(), 'Vacancy Name')]/../../div//input
+
+
+postmand, practise APIs , reqres.in
+polling wait, stopwatch ( estimation to stop test case)
+
+clear() de xoa cac du lieu default truoc khi truyen vao du lieu
+is_selected () de verify tick default truoc khi scripts tick. chi co the acction cho cac element co ho tro tick, neu khong can su dung den Javascripts. 
+hidden element: "display=none" 
+screenshot
+
+viet 1 API helper su dung ham Post & Get, url: https://reqres.in/

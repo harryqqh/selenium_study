@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
 
 class BasePage:
     
@@ -20,8 +21,8 @@ class BasePage:
         
     #Method to input text
     def send_keys(self, xpath, text):
-        element = self.wait.until(EC.presence_of_element_located(xpath))
-        element.send_keys(text)
+        self.wait.until(EC.presence_of_element_located(xpath)).send_keys(text)
+        
         
     #Verify if dropdown is selectable
     # def select_dropdown(self, element, value):

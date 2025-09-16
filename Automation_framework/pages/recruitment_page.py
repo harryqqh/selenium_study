@@ -17,8 +17,8 @@ class RecruitmentPage(BasePage):
     # Method to navigate to Recruitment page
     def navigate_to_recruitment(self):
         """Navigate to the Recruitment page."""
-        recruitment_menu = self.wait.until(EC.element_to_be_clickable(self.RECRUITMENT_MENU))
-        recruitment_menu.click()
+        self.wait.until(EC.element_to_be_clickable(self.RECRUITMENT_MENU)).click()
+        
         
     # Method to verify navigation successful   
     def verify_navigation_successful(self):
@@ -28,8 +28,7 @@ class RecruitmentPage(BasePage):
     
     # Method to go to Vacancy page
     def go_to_vacancy_page(self):
-        vacancy_page = self.wait.until(EC.element_to_be_clickable(self.VACANCY))
-        vacancy_page.click()
+        self.wait.until(EC.element_to_be_clickable(self.VACANCY)).click()
         
     # Method to verify Vacancy page navigation successful
     def verify_vacancy_navigtion_successful(self):
