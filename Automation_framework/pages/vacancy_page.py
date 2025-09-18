@@ -6,7 +6,7 @@ from base.base_page import BasePage
 
 class VacancyPage(BasePage):
     ADD_BUTTON = (By.XPATH, '//*[@class="oxd-button oxd-button--medium oxd-button--secondary"]')
-    VACANCY_NAME = (By.XPATH,'//label[contains(text(), "Vacancy Name")]/../../div//input')
+    VACANCY_NAME_INPUT = (By.XPATH,'//label[contains(text(), "Vacancy Name")]/../../div//input')
     
     def __init__(self, driver):
         self.driver = driver
@@ -18,7 +18,7 @@ class VacancyPage(BasePage):
         add_button.click()
         
     # Method to fill vacancy form
-    def fill_vacancy_form(self, vacancy_name):
-        vacancyName_field = self.wait.until(EC.presence_of_element_located(self.VACANCY_NAME))
-        vacancyName_field.send_keys(vacancy_name)
+    def fill_vacancy_name(self, vacancy_name: str):
+        self.wait.until(EC.presence_of_element_located(self.VACANCY_NAME_INPUT)).send_keys(vacancy_name)
+        
         
