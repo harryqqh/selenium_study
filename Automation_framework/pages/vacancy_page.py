@@ -17,7 +17,7 @@ class VacancyPage(BasePage):
     PROFILE = (By.XPATH, "//*[@class='oxd-userdropdown-name']")
     SAVE_BUTTON = (By.XPATH, '//button[@type="submit"]')
     JOB_TITLE_DROPDOWN = (By.XPATH,'//div[@class="oxd-select-wrapper"]')
-    JOB_TITLE = (By.XPATH,'//span[text()="Automaton Tester"]')
+    JOB_TITLE = (By.XPATH,'//div[@role="listbox"]//span[text()="Automaton Tester"]')
     
     def __init__(self, driver):
         super().__init__(driver)
@@ -59,10 +59,8 @@ class VacancyPage(BasePage):
     def perform_complete_add_vacancy(self, vacancy_name: str, description: str, number_of_position: int):
            self.click_add_button()
            self.fill_vacancy_name(vacancy_name)
-           self.select_job_title_from_dropdown()
-           
-           self.fill_description(description)
-           
+           self.select_job_title_from_dropdown()           
+           self.fill_description(description)           
            self.fill_hiring_manager()
            self.fill_number_of_positions(number_of_position)
            self.click_save_button

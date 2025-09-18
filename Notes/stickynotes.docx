@@ -17,4 +17,7 @@ screenshot
 
 viet 1 method call API de su dung request Post & Get cho test scripts, url: https://reqres.in/
 
+console Chrome.
  setTimeout(function() { debugger; }, 3000);
+
+ Allure Report + Java 
