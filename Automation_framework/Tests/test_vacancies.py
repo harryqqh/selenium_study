@@ -31,10 +31,3 @@ class TestVacancies(BaseTest):
         print("🔵 Perform complete add Vacancy")
         addVacancyPage.perform_complete_add_vacancy("Vacancy name", "this is description", "3")
         print('✅ New Vacancy added successfully')
-        
-   
-   
-   
-    # Call click Add button method
-        #     vacanciesPage.click_add_button()
-        #     print("✅ Click Add button successful")

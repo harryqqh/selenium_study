@@ -24,11 +24,11 @@ class BasePage:
         self.wait.until(EC.presence_of_element_located(xpath)).send_keys(text)
         
         
-    #Verify if dropdown is selectable
-    # def select_dropdown(self, element: tuple, text: str):
-    #     dropdown = self.wait.until(EC.presence_of_element_located(element))
-    #     select = Select(dropdown)
-    #     select.select_by_visible_text(text)
+    # Method select dropdown
+    def select_dropdown(self, element: tuple, text: str):
+        dropdown = self.wait.until(EC.presence_of_element_located(element))
+        select = Select(dropdown)
+        select.select_by_visible_text(text)
         
     def select_span_using_js(self, element):
         self.driver.execute_script("arguments[0].click();", element)

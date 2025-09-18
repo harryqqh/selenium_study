@@ -38,8 +38,7 @@ class VacancyPage(BasePage):
     # Select from dropdown
     def select_job_title_from_dropdown(self):
         self.click(self.JOB_TITLE_DROPDOWN)
-        element = self.get_element(self.JOB_TITLE)
-        self.click(element)
+        self.wait.until(EC.presence_of_element_located(self.JOB_TITLE)).click()
         
     # Methods to fill description
     def fill_description(self, description: str):
@@ -47,7 +46,12 @@ class VacancyPage(BasePage):
     
     def fill_hiring_manager(self):
         manager = self.get_element(self.PROFILE).text
-        self.actions.send_keys_to_element(self.HIRING_MANAGER_INPUT,manager).pause(1).send_keys(Keys.DOWN).send_keys(Keys.ENTER).perform()
+        input_element = self.get_element(self.HIRING_MANAGER_INPUT)
+        self.actions.send_keys_to_element(input_element, manager)\
+            .pause(2)\
+            .send_keys(Keys.DOWN)\
+            .send_keys(Keys.ENTER)\
+            .perform()
     
     def fill_number_of_positions(self, number_of_position: int):
         self.wait.until(EC.presence_of_element_located(self.NUMBER_OF_POSITIONS_INPUT)).send_keys(number_of_position)
@@ -59,8 +63,12 @@ class VacancyPage(BasePage):
     def perform_complete_add_vacancy(self, vacancy_name: str, description: str, number_of_position: int):
            self.click_add_button()
            self.fill_vacancy_name(vacancy_name)
-           self.select_job_title_from_dropdown()           
-           self.fill_description(description)           
+           self.select_job_title_from_dropdown()
+           sleep(1) # for UI showcase          
+           self.fill_description(description)
+           sleep(1)  # for UI showcase         
            self.fill_hiring_manager()
            self.fill_number_of_positions(number_of_position)
+           sleep(1) # for UI showcase
            self.click_save_button
+           sleep(1)
