@@ -29,7 +29,7 @@ class TestVacancies(BaseTest):
         print("🔵 Starting Vacancy page test")
         # Add new vacancy
         print("🔵 Perform complete add Vacancy")
-        addVacancyPage.perform_complete_add_vacancy('Vacancy Name','Automation Tester', 'this is description', '2')
+        addVacancyPage.perform_complete_add_vacancy("Vacancy name", "this is description", "3")
         print('✅ New Vacancy added successfully')
         
    
