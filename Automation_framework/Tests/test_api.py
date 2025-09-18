@@ -3,11 +3,12 @@
 import requests
 import pytest
 
-class TestAPI:
-    def test_get_user(self):
+class APIHelper:
+    def test_get_user():
         response = requests.get('https://reqres.in/api/users/2')
         assert (response.status_code == 200), f'Expected status code 200 but got {response.status_code}'
-        data =response.json()
-        #print(response.json())#
+        data = response.json()
+        #print(data)#
         
-    def test_post_user(self):
+    def test_post_user():
+        

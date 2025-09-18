@@ -4,6 +4,8 @@ http://the-internet.herokuapp.com/dropdown
 (//input[@class="oxd-input oxd-input--active"])[2]
 //label[contains(text(), 'Vacancy Name')]/../../div//input
 
+//*[contains(text(), "QA Engineer")]
+
 
 postmand, practise APIs , reqres.in
 polling wait, stopwatch ( estimation to stop test case)
