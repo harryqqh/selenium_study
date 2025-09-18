@@ -10,25 +10,25 @@ class BasePage:
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
         
-    #Wait for element
+    #Method to find element
     def get_element(self, xpath):
         element = self.wait.until(EC.presence_of_element_located(xpath))
         return element
     
-    #Wait for button to clickable
+    #Method to click button element
     def click(self, xpath):
         self.wait.until(EC.presence_of_element_located(xpath)).click()
         
     #Method to input text
     def send_keys(self, xpath, text):
         self.wait.until(EC.presence_of_element_located(xpath)).send_keys(text)
-        
-        
-    # Method select dropdown
+
+    #Method select dropdown
     def select_dropdown(self, element: tuple, text: str):
         dropdown = self.wait.until(EC.presence_of_element_located(element))
         select = Select(dropdown)
         select.select_by_visible_text(text)
         
+    #Method select span element using javascripts    
     def select_span_using_js(self, element):
         self.driver.execute_script("arguments[0].click();", element)

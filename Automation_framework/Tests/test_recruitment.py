@@ -34,7 +34,3 @@ class TestRecruitment(BaseTest):
         # Verify Vacancy page navigation successful
         assert vacancyPage.verify_vacancy_navigtion_successful() is True
         print("✅ Navigation to Vacancy page successful")
-        
-        
-
-
