@@ -27,4 +27,5 @@ console Chrome.
  Test run stragegy
  early test (check scipts intergration, implementation, early bug dectection)
  run scipts parallel
- schedule run 
+ schedule run
+  

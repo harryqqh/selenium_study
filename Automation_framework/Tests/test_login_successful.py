@@ -2,6 +2,7 @@ from selenium import webdriver
 from base.base_test import BaseTest
 from pages.login_page import LoginPage
 from pages.dashboard_page import DasboardPage
+from utils.config_reader import ConfigReader
 import pytest
 
 class TestLogin(BaseTest):
@@ -13,10 +14,15 @@ class TestLogin(BaseTest):
             # Initialize page objects
             loginPage = LoginPage(self.driver)
             dashboardPage = DasboardPage(self.driver)
-        
-            #Perform actions
+            userName = ConfigReader()
+            passWord = ConfigReader()
+            user_name = userName.get_username()
+            pass_word = passWord.get_password()
+            
             print("🔵 Login attempt")
-            loginPage.login("Admin", "admin123")
+            loginPage.login(user_name, pass_word)
+                       
+            
 
             #Verify login successful
             assert dashboardPage.verify_login_successful() is True
