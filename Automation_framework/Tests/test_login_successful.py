@@ -14,13 +14,11 @@ class TestLogin(BaseTest):
             # Initialize page objects
             loginPage = LoginPage(self.driver)
             dashboardPage = DasboardPage(self.driver)
-            userName = ConfigReader(self.driver)
-            passWord = ConfigReader(self.driver)
-            user_name = userName.get_username()
-            pass_word = passWord.get_password()
+            userName = ConfigReader.get_username(self.driver)
+            passWord = ConfigReader.get_password(self.driver)
             
             print("🔵 Login attempt")
-            loginPage.login(user_name, pass_word)
+            loginPage.login(userName, passWord)
                        
             
 
