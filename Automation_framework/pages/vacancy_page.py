@@ -13,21 +13,18 @@ class VacancyPage(BasePage):
     
     ADD_BUTTON = (By.XPATH, '//*[@class="oxd-button oxd-button--medium oxd-button--secondary"]')
     HIRING_MANAGER_DROPDOWN = (By.XPATH, '//label[contains(text(),"Hiring Manager")]/parent::div/following-sibling::div//i[contains(@class,"oxd-select-text--arrow")]')
+    SEARCH_BUTTON = (By.XPATH, '//button[@type="submit" and text()=" Search "]')
+    
     
     VACANCY_NAME_INPUT = (By.XPATH,'//label[contains(text(), "Vacancy Name")]/../../div//input')
-    # JOB_TITLE_DROPDOWN1 =(By.XPATH,'//*[@class="oxd-icon bi-caret-down-fill oxd-select-text--arrow"]')
-    #job_title_option_xpath = f'(By.XPATH','//div[@role='listbox']//div[@role="option"]//span[text()= {job_title}]')
     DESCRIPTION_TEXTAREA = (By.XPATH, '//textarea[@placeholder="Type description here"]')
     HIRING_MANAGER_INPUT = (By.XPATH, '//input[@placeholder="Type for hints..."]')
     NUMBER_OF_POSITIONS_INPUT = (By.XPATH, '//label[contains(text(), "Number of Positions")]/../../div/input')
     PROFILE = (By.XPATH, "//*[@class='oxd-userdropdown-name']")
     SAVE_BUTTON = (By.XPATH, '//button[@type="submit"]')
     JOB_TITLE_DROPDOWN = (By.XPATH,'//div[@class="oxd-select-wrapper"]')
-    JOB_TITLE = (By.XPATH,'//div[@role="listbox"]//span[text()="Automaton Tester"]')
+    JOB_TITLE = (By.XPATH,'//div[@role="listbox"]//span[text()= "Automation Tester"]')
     CANCEL_BUTTON = (By.XPATH, '//button[@type="button" and text()=" Cancel "]')
-    SEARCH_BUTTON = (By.XPATH, '//button[@type="submit" and text()=" Search "]')
-    
-    
     EDIT_VACANCY_LABEL = (By.XPATH, '//h6[text()="Edit Vacancy"]')
 
     
@@ -51,7 +48,6 @@ class VacancyPage(BasePage):
     def select_job_title_from_dropdown(self):
         self.click(self.JOB_TITLE_DROPDOWN)
         self.wait.until(EC.presence_of_element_located(self.JOB_TITLE)).click()
-        # self.select_dropdown(self.JOB_TITLE_DROPDOWN, 'Automaton Tester')
         
     # Methods to fill description
     def fill_description(self, description: str):
@@ -80,27 +76,34 @@ class VacancyPage(BasePage):
     def click_cancel_button(self):
         self.get_element(self.CANCEL_BUTTON).click()
         
+    def select_manager_dropdown(self):
+        self.get_element(self.HIRING_MANAGER_DROPDOWN).click()
+        
     def click_search_button(self):
         self.get_element(self.SEARCH_BUTTON).click()
+    
+    def select_hiring_manager(self):
+        manager = self.get_element(self.PROFILE).text
+        manager_locator = (By.XPATH,f"//div[@role='option']//span[text()='{manager}']")
+        self.click(manager_locator)
 
-    
-    
-    
-    
+
     # Perform complete actions   
     def perform_complete_add_vacancy(self, vacancy_name: str, description: str, number_of_position: int):
            self.click_add_button()
            self.fill_vacancy_name(vacancy_name)
-           self.select_job_title_from_dropdown()
-           sleep(1) # for UI showcase          
+           self.select_job_title_from_dropdown()          
            self.fill_description(description)
-           sleep(1)  # for UI showcase         
+                   
            self.fill_hiring_manager()
            self.fill_number_of_positions(number_of_position)
-           sleep(1) # for UI showcase
+           
            self.click_save_button()
            sleep(1) # for UI showcase
            
     def search_vacancy(self):
         self.select_job_title_from_dropdown()
-        self.s()
+        self.select_manager_dropdown()
+        self.select_hiring_manager()
+        self.click_search_button()
+        sleep(1) # for UI showcase
