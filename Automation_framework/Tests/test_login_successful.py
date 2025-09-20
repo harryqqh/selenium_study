@@ -6,7 +6,7 @@ import pytest
 
 class TestLogin(BaseTest):
     
-        @pytest.mark.smoke # Marking test suites
+        # @pytest.mark.smoke # Marking test suites
         
         def test_login_orange(self):
             print("🔵 Starting login test")
