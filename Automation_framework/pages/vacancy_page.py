@@ -104,4 +104,4 @@ class VacancyPage(BasePage):
         self.select_manager_dropdown()
         self.select_hiring_manager()
         self.click_search_button()
-        sleep(1) # for UI showcase
+        sleep(2) # for UI showcase

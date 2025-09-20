@@ -18,7 +18,7 @@ class TestVacancies(BaseTest):
         
         vacancyName = 'Automation tester for' + str(datetime.now())
 
-        # Perform complete acions
+        # Perform login
         print("🔵 Login attempt")
         loginPage.login("Admin", "admin123")
         assert dashboardPage.verify_login_successful() is True
@@ -37,7 +37,8 @@ class TestVacancies(BaseTest):
         # Navigate back to Vacancy page
         addVacancyPage.click_cancel_button()
         assert vacanciesPage.verify_vacancy_navigtion_successful() is True
-        print("✅ Navigation to Vacancy page successful")
+        print("✅ Navigation back to Vacancy page successful")
         
         # Perform Searching Manager
+        print("🔵 Perform Searching Hiring Manager")
         addVacancyPage.search_vacancy()
