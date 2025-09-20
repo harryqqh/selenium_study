@@ -8,6 +8,8 @@ from datetime import datetime
 import pytest
    
 class TestVacancies(BaseTest):
+    
+    @pytest.mark.smoke # Marking test suites for 
     def test_vacancy_page(self):
         # Initialize page objects
         loginPage = LoginPage(self.driver)
