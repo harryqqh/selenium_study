@@ -6,8 +6,14 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from base.base_page import BasePage
 from time import sleep
+
+
+
 class VacancyPage(BasePage):
+    
     ADD_BUTTON = (By.XPATH, '//*[@class="oxd-button oxd-button--medium oxd-button--secondary"]')
+    HIRING_MANAGER_DROPDOWN = (By.XPATH, '//label[contains(text(),"Hiring Manager")]/parent::div/following-sibling::div//i[contains(@class,"oxd-select-text--arrow")]')
+    
     VACANCY_NAME_INPUT = (By.XPATH,'//label[contains(text(), "Vacancy Name")]/../../div//input')
     # JOB_TITLE_DROPDOWN1 =(By.XPATH,'//*[@class="oxd-icon bi-caret-down-fill oxd-select-text--arrow"]')
     #job_title_option_xpath = f'(By.XPATH','//div[@role='listbox']//div[@role="option"]//span[text()= {job_title}]')
@@ -18,6 +24,12 @@ class VacancyPage(BasePage):
     SAVE_BUTTON = (By.XPATH, '//button[@type="submit"]')
     JOB_TITLE_DROPDOWN = (By.XPATH,'//div[@class="oxd-select-wrapper"]')
     JOB_TITLE = (By.XPATH,'//div[@role="listbox"]//span[text()="Automaton Tester"]')
+    CANCEL_BUTTON = (By.XPATH, '//button[@type="button" and text()=" Cancel "]')
+    SEARCH_BUTTON = (By.XPATH, '//button[@type="submit" and text()=" Search "]')
+    
+    
+    EDIT_VACANCY_LABEL = (By.XPATH, '//h6[text()="Edit Vacancy"]')
+
     
     def __init__(self, driver):
         super().__init__(driver)
@@ -39,6 +51,7 @@ class VacancyPage(BasePage):
     def select_job_title_from_dropdown(self):
         self.click(self.JOB_TITLE_DROPDOWN)
         self.wait.until(EC.presence_of_element_located(self.JOB_TITLE)).click()
+        # self.select_dropdown(self.JOB_TITLE_DROPDOWN, 'Automaton Tester')
         
     # Methods to fill description
     def fill_description(self, description: str):
@@ -58,6 +71,21 @@ class VacancyPage(BasePage):
     
     def click_save_button(self):
         self.get_element(self.SAVE_BUTTON).click()
+        
+    def verify_edit_vacancy_displayed(self):
+        edit_vacancy_label = self.wait.until(EC.presence_of_element_located(self.EDIT_VACANCY_LABEL))
+        return edit_vacancy_label.is_displayed()
+         
+        
+    def click_cancel_button(self):
+        self.get_element(self.CANCEL_BUTTON).click()
+        
+    def click_search_button(self):
+        self.get_element(self.SEARCH_BUTTON).click()
+
+    
+    
+    
     
     # Perform complete actions   
     def perform_complete_add_vacancy(self, vacancy_name: str, description: str, number_of_position: int):
@@ -70,5 +98,9 @@ class VacancyPage(BasePage):
            self.fill_hiring_manager()
            self.fill_number_of_positions(number_of_position)
            sleep(1) # for UI showcase
-           self.click_save_button
-           sleep(1)
+           self.click_save_button()
+           sleep(1) # for UI showcase
+           
+    def search_vacancy(self):
+        self.select_job_title_from_dropdown()
+        self.s()

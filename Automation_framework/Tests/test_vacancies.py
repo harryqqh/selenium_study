@@ -3,6 +3,7 @@ from pages.login_page import LoginPage
 from pages.dashboard_page import DasboardPage
 from pages.recruitment_page import RecruitmentPage
 from pages.vacancy_page import VacancyPage
+from datetime import datetime
 
 import pytest
    
@@ -15,19 +16,28 @@ class TestVacancies(BaseTest):
         vacanciesPage = RecruitmentPage(self.driver)
         addVacancyPage = VacancyPage(self.driver)
         
+        vacancyName = 'Automation tester for' + str(datetime.now())
+
+        
+        
         # Perform complete acions
         print("🔵 Login attempt")
         loginPage.login("Admin", "admin123")
         assert dashboardPage.verify_login_successful() is True
         print("✅ Login successful")
+        
+        # Navigate to Recruitment and Vacancy
         recruitmentPage.navigate_to_recruitment()
-        assert recruitmentPage.verify_navigation_successful() is True
-        print("✅ Navigation to Recruitment page successful")
         vacanciesPage.go_to_vacancy_page()
-        assert vacanciesPage.verify_vacancy_navigtion_successful() is True
-        print("✅ Navigation to Vacancy page successful")
-        print("🔵 Starting Vacancy page test")
+        
         # Add new vacancy
         print("🔵 Perform complete add Vacancy")
-        addVacancyPage.perform_complete_add_vacancy("Vacancy name", "this is description", "3")
+        addVacancyPage.perform_complete_add_vacancy(vacancyName, "Automation testing is running", "1")
+        assert addVacancyPage.verify_edit_vacancy_displayed() is True, 'Failed to add new vacancy'
         print('✅ New Vacancy added successfully')
+        
+        # Navigate back to Vacancy page
+        addVacancyPage.click_cancel_button()
+        assert vacanciesPage.verify_vacancy_navigtion_successful() is True
+        print("✅ Navigation to Vacancy page successful")
+        

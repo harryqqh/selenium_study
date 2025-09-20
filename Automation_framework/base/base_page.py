@@ -25,7 +25,7 @@ class BasePage:
 
     #Method select dropdown
     def select_dropdown(self, element: tuple, text: str):
-        dropdown = self.wait.until(EC.presence_of_element_located(element))
+        dropdown = self.wait.until(EC.element_to_be_clickable(element))
         select = Select(dropdown)
         select.select_by_visible_text(text)
         
