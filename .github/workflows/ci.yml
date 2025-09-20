@@ -23,6 +23,7 @@ jobs:
       
       # Install Google Chrome
       - name: Install Google Chrome
+        uses: browser-actions/setup-chrome@v1
         run: |
           sudo apt-get update -y
           sudo apt-get install -y google-chrome-stable
@@ -33,6 +34,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
 
       # Run tests with pytest
       - name: Run smoke tests
