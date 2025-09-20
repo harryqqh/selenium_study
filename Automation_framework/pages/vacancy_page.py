@@ -92,12 +92,10 @@ class VacancyPage(BasePage):
     def perform_complete_add_vacancy(self, vacancy_name: str, description: str, number_of_position: int):
            self.click_add_button()
            self.fill_vacancy_name(vacancy_name)
-           self.select_job_title_from_dropdown()          
+           self.select_job_title_from_dropdown()
            self.fill_description(description)
-                   
            self.fill_hiring_manager()
            self.fill_number_of_positions(number_of_position)
-           
            self.click_save_button()
            sleep(1) # for UI showcase
            

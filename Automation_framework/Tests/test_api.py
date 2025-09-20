@@ -1,5 +1,5 @@
-# viet 1 method call API de su dung request Post & Get cho test scripts, url: https://reqres.in/
 
+# Viết 1 method tái sử dụng (api_helper) dùng cho API requests GET & POST, url: https://reqres.in/
 import requests
 
 
