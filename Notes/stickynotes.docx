@@ -21,3 +21,10 @@ console Chrome.
  setTimeout(function() { debugger; }, 3000);
 
  Allure Report + Java 
+
+ Github action
+ 
+ Test run stragegy
+ early test (check scipts intergration, implementation, early bug dectection)
+ run scipts parallel
+ schedule run 
