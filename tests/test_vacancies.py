@@ -10,6 +10,7 @@ import pytest
 class TestVacancies(BaseTest):
     
     # @pytest.mark.smoke # Marking test suites 
+    
     def test_vacancy_page(self):
         # Initialize page objects
         loginPage = LoginPage(self.driver)

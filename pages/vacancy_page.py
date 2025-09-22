@@ -23,7 +23,7 @@ class VacancyPage(BasePage):
     PROFILE = (By.XPATH, "//*[@class='oxd-userdropdown-name']")
     SAVE_BUTTON = (By.XPATH, '//button[@type="submit"]')
     JOB_TITLE_DROPDOWN = (By.XPATH,'//div[@class="oxd-select-wrapper"]')
-    JOB_TITLE = (By.XPATH,'//div[@role="listbox"]//span[text()= "Automation Tester"]')
+    JOB_TITLE = (By.XPATH,'//div[@role="listbox"]//span[text()= "QA Engineer"]')
     CANCEL_BUTTON = (By.XPATH, '//button[@type="button" and text()=" Cancel "]')
     EDIT_VACANCY_LABEL = (By.XPATH, '//h6[text()="Edit Vacancy"]')
 
